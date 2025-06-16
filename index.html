@@ -1,47 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charity Water Landing Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f6f9fc;
+      color: #1a1a1a;
+    }
+
+    .main-bg {
+      background-image: url('img/new image.jpg'); /* Use the new background image */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      min-height: 100vh;
+      padding-bottom: 40px;
+      display: flex;
+      align-items: flex-start; /* Start items at the top */
+      justify-content: flex-start;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #ffffff;
+      position: relative;
+      z-index: 2;
+      /* Add a black shadow underneath the header */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+    }
+
+    .logo {
+      font-weight: bold;
+      color: #ffcc00;
+      font-size: 1.2em;
+      /* Add a pointer cursor and transition for interactivity */
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    /* Make the logo grow a bit when hovered */
+    .logo:hover {
+      transform: scale(1.08);
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #4f6d7a;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    /* Change nav link color on hover */
+    nav a:hover {
+      color: #2E9DF7; /* Charity: Water blue */
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 10px 40px;
+      background-color: rgba(20, 33, 61, 0.85);
+      border-radius: 10px;
+      color: white;
+      max-width: 35%;
+      margin-left: 40px;
+      margin-right: auto;
+      margin-top: 80px;
+      /* Add a fade-in animation */
+      opacity: 0;
+      animation: fadeInHero 1.2s ease-in forwards;
+    }
+
+    /* Fade-in animation for the blue box */
+    @keyframes fadeInHero {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    .hero-text {
+      max-width: 100%; /* Allow text to use the full width of the blue box */
+    }
+
+    .hero-text h1 {
+      font-size: 3.5em; /* Make the headline bigger */
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.6em; /* Make the paragraph text bigger */
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 40px;
+      /* Add more space below the buttons */
+      margin-bottom: 30px; /* You can adjust this value as needed */
+    }
+
+    .btn {
+      padding: 18px 30px; /* Make the buttons a bit bigger */
+      border: none;
+      border-radius: 25px;
+      font-size: 1.3em;   /* Make the button text a bit bigger */
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      white-space: nowrap; /* Keep the text in one line */
+      /* Add a little shadow for depth */
+      box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+    }
+
+    /* Make buttons pop up a bit on hover */
+    .btn:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 6px 16px rgba(46, 157, 247, 0.18);
+    }
+
+    .btn-primary {
+      background-color: #8bbecb;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: #6aa5b3;
+    }
+
+    .btn-secondary {
+      background-color: #dfe7eb;
+      color: #333333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #cfdde2;
+    }
+
+    .hero-img {
+      max-width: 50%;
+    }
+
+    .hero-img img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    /* Add a simple footer */
+    footer {
+      text-align: center;
+      color: #fff;
+      background: rgba(20, 33, 61, 0.85);
+      padding: 18px 10px 12px 10px;
+      font-size: 1em;
+      letter-spacing: 1px;
+      border-radius: 10px 10px 0 0;
+      margin: 40px 40px 0 40px;
+      box-shadow: 0 -2px 8px rgba(46, 157, 247, 0.10);
+    }
+
+    /* Responsive styles for better mobile and tablet experience */
+    @media (max-width: 1100px) {
+      .hero {
+        max-width: 60%; /* Make blue box wider on medium screens */
+        padding: 10px 20px;
+      }
+      footer {
+        margin: 40px 10px 0 10px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .main-bg {
+        flex-direction: column; /* Stack content vertically */
+        align-items: center;
+        padding-bottom: 10px;
+      }
+      .hero {
+        max-width: 90%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 40px;
+        padding: 10px 8px;
+      }
+      footer {
+        margin: 30px 5px 0 5px;
+        font-size: 0.95em;
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        padding: 10px 5px;
+        text-align: center;
+      }
+      .logo {
+        margin-bottom: 10px;
+        font-size: 1em;
+      }
+      nav a {
+        margin-left: 10px;
+        font-size: 1em;
+      }
+      .hero {
+        font-size: 0.95em;
+        padding: 8px 2vw;
+        margin-top: 20px;
+      }
+      .hero-text h1 {
+        font-size: 2em;
+      }
+      .hero-text p {
+        font-size: 1em;
+      }
+      .btn {
+        font-size: 1em;
+        padding: 12px 16px;
+      }
+      .buttons {
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+      footer {
+        font-size: 0.9em;
+        padding: 12px 2px 8px 2px;
+      }
+    }
+
+    /* Add a smooth scroll effect for anchor links (for a nicer experience) */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Optional: Add a slight overlay to the background image for better text readability */
+    .main-bg::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.18); /* Slight dark overlay */
+      z-index: 0;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .main-bg {
+      position: relative; /* Needed for overlay */
+    }
+    .main-bg > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Optional: Add a little animation to the logo image */
+    .logo img {
+      transition: transform 0.2s;
+    }
+    .logo:hover img {
+      transform: rotate(-8deg) scale(1.08);
+    }
+  </style>
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
+  <header>
+    <div class="logo">
+      <!-- Add the image to the left of the logo text -->
+      <img src="img/Untitled design.jpg" alt="Charity Water Logo" style="height:32px; vertical-align:middle; margin-right:10px;">
+      charity: water
+    </div>
+    <nav>
+      <a href="#">ABOUT US</a>
+      <a href="#">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="main-bg">
     <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
-
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
+      <div class="hero-text">
+        <h1>Effortless Donations with Lasting Impacts.</h1>
         <p>
-         
-    </section>
-
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+          Every donation brings clean, safe water to families in need—transforming lives in real time. Your support improves health, unlocks opportunity, and helps break the cycle of poverty for good.
+        </p>
+        <div class="buttons">
+          <button class="btn btn-primary">GIVE TODAY</button>
+          <button class="btn btn-secondary">LEARN MORE</button>
         </div>
+      </div>
     </section>
-
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+  </div>
+  <!-- Add a simple footer for a finished look -->
+  <footer>
+    &copy; charity: water | Donate to make a difference
+  </footer>
 </body>
 </html>
